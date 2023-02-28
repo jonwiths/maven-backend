@@ -12,9 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: ['https://maven-edu.netlify.app/'],
+    origin: ['https://maven-edu.netlify.app/', ''],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD']
   })
 );
 
