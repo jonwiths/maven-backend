@@ -46,7 +46,7 @@ const setSchedTimings = (req, res) => {
                   res.status(403).send('Time AND date is already scheduled!');
                 } else {
                   const q =
-                    'INSERT INTO `ementor_db_1`.`create_timings` (`id`, `duration`, `start`, `end`, `topic`, `date`, `meeting_link`, `day`, `status`, `mentor_id`) VALUES (?,?,?,?,?,?,?,?,?,?);';
+                    'INSERT INTO `heroku_064c14c6215e460`.`create_timings` (`id`, `duration`, `start`, `end`, `topic`, `date`, `meeting_link`, `day`, `status`, `mentor_id`) VALUES (?,?,?,?,?,?,?,?,?,?);';
                   db.query(
                     q,
                     [
