@@ -16,7 +16,7 @@ const getStudentProfileAbout = (req, res) => {
       return res.status(500).json(err);
     } else {
       const q =
-        'SELECT * FROM `heroku_064c14c6215e460`..student_about WHERE student_id = ?;';
+        'SELECT * FROM `heroku_064c14c6215e460`.student_about WHERE student_id = ?;';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);
