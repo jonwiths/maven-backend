@@ -12,9 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: ['https://maven-edu.netlify.app/'],
+    origin: ['https://maven-edu.netlify.app'],
     credentials: true,
-    // methods: 'GET, POST, PUT, DELETE, HEAD, OPTIONS',
     optionsSuccessStatus: 200
   })
 );
@@ -23,11 +22,12 @@ const PORT = 8000;
 
 app.use((req, res, next) => {
   res.header('Content-Type', 'application/json;charset=UTF-8');
+  res.header('Access-Control-Allow-Origin', 'https://maven-edu.netlify.app');
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization, withCredentials'
   );
   next();
 });
