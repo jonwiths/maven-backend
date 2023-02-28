@@ -14,7 +14,7 @@ const deleteSchedTimings = (req, res) => {
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
     const q =
-      'SELECT * FROM `heroku_713c4886f766b8c`.create_timings WHERE `id` = ? AND mentor_id = ?;';
+      'SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE `id` = ? AND mentor_id = ?;';
     db.query(q, [sched_id, userInfo.id], (err, data) => {
       if (err) {
         console.log(err);
@@ -24,7 +24,7 @@ const deleteSchedTimings = (req, res) => {
       } else {
         console.log(token);
         const q =
-          'DELETE FROM `heroku_713c4886f766b8c`.create_timings WHERE id = ? AND mentor_id = ?; ';
+          'DELETE FROM `heroku_064c14c6215e460`.create_timings WHERE id = ? AND mentor_id = ?; ';
 
         db.query(
           q,
@@ -35,7 +35,7 @@ const deleteSchedTimings = (req, res) => {
             if (err) return res.status(500).err;
             else {
               const q =
-                'SELECT meeting_available  FROM `heroku_713c4886f766b8c`.mentor_summary WHERE `mentor_id` = ?;';
+                'SELECT meeting_available  FROM `heroku_064c14c6215e460`.mentor_summary WHERE `mentor_id` = ?;';
 
               db.query(q, [userInfo.id], (err, data) => {
                 if (err) {
@@ -44,7 +44,7 @@ const deleteSchedTimings = (req, res) => {
                   // console.log(data[0].total_mentors + 1);
 
                   const q =
-                    'UPDATE `heroku_713c4886f766b8c`.mentor_summary SET meeting_available = meeting_available-1 WHERE mentor_id = ?;';
+                    'UPDATE `heroku_064c14c6215e460`.mentor_summary SET meeting_available = meeting_available-1 WHERE mentor_id = ?;';
 
                   db.query(q, [userInfo.id], (err, data) => {
                     if (err) {

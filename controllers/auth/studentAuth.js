@@ -24,7 +24,7 @@ const register = (req, res) => {
   const currentDate = new Date().toLocaleString();
 
   const q =
-    'SELECT * FROM `heroku_713c4886f766b8c`.`students` WHERE `email` = ? OR `phone_number` = ?;';
+    'SELECT * FROM `heroku_064c14c6215e460`.`students` WHERE `email` = ? OR `phone_number` = ?;';
 
   db.query(q, [email, phone], (err, data) => {
     if (err) return res.status(500).json(err);
@@ -32,7 +32,7 @@ const register = (req, res) => {
       return res.status(409).json('Email or Phone number already exists!');
 
     const q =
-      'SELECT COUNT(*) AS total_student FROM `heroku_713c4886f766b8c`.`students`;';
+      'SELECT COUNT(*) AS total_student FROM `heroku_064c14c6215e460`.`students`;';
 
     db.query(q, (err, data) => {
       if (err) console.log(err);
@@ -43,7 +43,7 @@ const register = (req, res) => {
       const hashedPassword = bcrypt.hashSync(password, salt);
 
       const insertQ =
-        'INSERT INTO `heroku_713c4886f766b8c`.`students`(`id`,`f_name`,`l_name`,`email`,`password`,`phone_number`,`date_created`,  `status`) VALUES(?,?,?,?,?,?,?,?)';
+        'INSERT INTO `heroku_064c14c6215e460`.`students`(`id`,`f_name`,`l_name`,`email`,`password`,`phone_number`,`date_created`,  `status`) VALUES(?,?,?,?,?,?,?,?)';
 
       db.query(
         insertQ,
@@ -124,7 +124,7 @@ const register = (req, res) => {
 };
 
 const login = (req, res) => {
-  q = 'SELECT * FROM `heroku_713c4886f766b8c`.`students` WHERE `email` = ?';
+  q = 'SELECT * FROM `heroku_064c14c6215e460`.`students` WHERE `email` = ?';
 
   db.query(q, [req.body.s_email], (err, data) => {
     if (err) return res.status(500).json(err);

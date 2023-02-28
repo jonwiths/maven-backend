@@ -25,7 +25,7 @@ const setProfileMentorAbout = (req, res) => {
     if (err) return res.status(500).json(err);
     else {
       const q =
-        'INSERT INTO `heroku_713c4886f766b8c`.mentor_about (bio, sex, age, phone_number, email, address, yrs_exp, current_job, mentor_id) VALUES(?,?,?,?,?,?,?,?,?)';
+        'INSERT INTO `heroku_064c14c6215e460`.mentor_about (bio, sex, age, phone_number, email, address, yrs_exp, current_job, mentor_id) VALUES(?,?,?,?,?,?,?,?,?)';
 
       db.query(
         q,
@@ -73,7 +73,7 @@ const setProfileMentorEducation = (req, res) => {
     if (err) return res.status(500).json(err);
     else {
       const q =
-        'INSERT INTO `heroku_713c4886f766b8c`.mentor_education(college, college_yr_graduate, high_school, hs_yr_graduated,current_job, current_job_started, company,mentor_id) VALUES(?,?,?,?,?,?,?,?)';
+        'INSERT INTO `heroku_064c14c6215e460`.mentor_education(college, college_yr_graduate, high_school, hs_yr_graduated,current_job, current_job_started, company,mentor_id) VALUES(?,?,?,?,?,?,?,?)';
 
       db.query(
         q,
@@ -117,7 +117,7 @@ const setProfileMentorEducation = (req, res) => {
 //     else {
 //       // console.log(userInfo.id);
 //       const q =
-//         'INSERT INTO `heroku_713c4886f766b8c`.mentor_education(current_job, current_job_started, company, mentor_id) VALUES(?,?,?,?)';
+//         'INSERT INTO `heroku_064c14c6215e460`.mentor_education(current_job, current_job_started, company, mentor_id) VALUES(?,?,?,?)';
 
 //       db.query(
 //         q,

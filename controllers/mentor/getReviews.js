@@ -15,7 +15,7 @@ const getReviews = (req, res) => {
     else {
       // console.log(userInfo.id);
       const q =
-        'SELECT R.*, S.id AS s_id, S.f_name AS s_fname, S.l_name AS s_lname FROM `heroku_713c4886f766b8c`.reviews AS R JOIN `heroku_713c4886f766b8c`.mentors AS M ON R.mentor_id = M.id JOIN `heroku_713c4886f766b8c`.students AS S ON R.student_id = S.id WHERE mentor_id = ?;';
+        'SELECT R.*, S.id AS s_id, S.f_name AS s_fname, S.l_name AS s_lname FROM `heroku_064c14c6215e460`.reviews AS R JOIN `heroku_064c14c6215e460`.mentors AS M ON R.mentor_id = M.id JOIN `heroku_064c14c6215e460`.students AS S ON R.student_id = S.id WHERE mentor_id = ?;';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);

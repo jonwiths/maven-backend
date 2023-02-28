@@ -20,7 +20,7 @@ const getCurrentMentor = (req, res) => {
 
       console.log(userInfo.id);
     } else {
-      const q = 'SELECT * FROM `heroku_713c4886f766b8c`.mentors WHERE id = ?;';
+      const q = 'SELECT * FROM `heroku_064c14c6215e460`.mentors WHERE id = ?;';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);

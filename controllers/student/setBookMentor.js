@@ -42,7 +42,7 @@ const setBookMentor = (req, res) => {
             } else {
               // console.log(data.length);
               const q =
-                'INSERT INTO e`heroku_713c4886f766b8c`.booking_status(id, status, student_id, mentor_id, create_timing_id, date_booked) VALUES (?,?,?,?,?,?);';
+                'INSERT INTO e`heroku_064c14c6215e460`.booking_status(id, status, student_id, mentor_id, create_timing_id, date_booked) VALUES (?,?,?,?,?,?);';
 
               db.query(
                 q,
@@ -60,7 +60,7 @@ const setBookMentor = (req, res) => {
                     return res.status(500).json(err);
                   } else {
                     const q =
-                      "UPDATE `heroku_713c4886f766b8c`.create_timings SET status = 'Booked' WHERE id = ? AND mentor_id = ?;";
+                      "UPDATE `heroku_064c14c6215e460`.create_timings SET status = 'Booked' WHERE id = ? AND mentor_id = ?;";
 
                     db.query(q, [meeting_id, mentor_id], (err, data) => {
                       if (err) {

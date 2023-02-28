@@ -14,7 +14,8 @@ const setFinishBooking = (req, res) => {
     req.headers['authorization'] ||
     req.cookies.mentor;
 
-  const q = 'SELECT COUNT(*) AS total_history FROM ementor_db_1.history;';
+  const q =
+    'SELECT COUNT(*) AS total_history FROM `heroku_064c14c6215e460`.history;';
 
   if (!token) return res.status(401).json('Not logged in');
   else {
@@ -30,7 +31,7 @@ const setFinishBooking = (req, res) => {
           if (err) return res.status(403).json('Token is not valid');
           else {
             const q =
-              'INSERT INTO `ementor_db_1`.`history` (`id`, `mentor_id`, `student_id`, `create_timing_id`, `status`, `date_ended`) VALUES (?,?,?,?,?,?);';
+              'INSERT INTO `heroku_064c14c6215e460`.`history` (`id`, `mentor_id`, `student_id`, `create_timing_id`, `status`, `date_ended`) VALUES (?,?,?,?,?,?);';
             db.query(
               q,
               [
@@ -47,7 +48,7 @@ const setFinishBooking = (req, res) => {
                   return res.status(409).send(err);
                 } else {
                   const q =
-                    "UPDATE ementor_db_1.create_timings SET status ='Finished' WHERE mentor_id = ? AND id = ?";
+                    "UPDATE `heroku_064c14c6215e460`.create_timings SET status ='Finished' WHERE mentor_id = ? AND id = ?";
 
                   db.query(q, [userInfo.id, schedule_id], (err, data) => {
                     if (err) {
