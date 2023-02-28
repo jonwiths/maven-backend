@@ -66,7 +66,7 @@ const register = (req, res) => {
 
           if (err) return res.status(500).json(err);
           const q =
-            'INSERT INTO ementor_db_1.student_about(bio, sex, phone_number, age, address, student_id) VALUES (?,?,?,?,?,?);';
+            'INSERT INTO `heroku_064c14c6215e460`.student_about(bio, sex, phone_number, age, address, student_id) VALUES (?,?,?,?,?,?);';
 
           db.query(
             q,
@@ -91,7 +91,7 @@ const register = (req, res) => {
                 const hs_yr = 'Not Set';
 
                 const q =
-                  'INSERT INTO ementor_db_1.student_education(college, college_yr, high_school, hs_yr, student_id) VALUES (?,?,?,?,?);';
+                  'INSERT INTO `heroku_064c14c6215e460`.student_education(college, college_yr, high_school, hs_yr, student_id) VALUES (?,?,?,?,?);';
 
                 db.query(
                   q,
