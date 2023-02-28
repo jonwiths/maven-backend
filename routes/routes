@@ -1,0 +1,23 @@
+const userCredentials = [
+  {
+    id: 1,
+    f_name: 'Jon',
+    l_name: 'Doe',
+    email: 'test@email.com',
+    password: '12345'
+  },
+  {
+    id: 2,
+    f_name: 'Jane',
+    l_name: 'Doe',
+    email: 'jd@email.com',
+    password: '12345'
+  },
+  {
+    id: 3,
+    f_name: 'Rcik',
+    l_name: 'Sanchez',
+    email: 'rk@email.com',
+    password: '12345'
+  }
+];

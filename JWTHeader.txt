@@ -1,0 +1,9 @@
+
+        {
+          headers: {
+            Authorization: localStorage.getItem('jwt'),
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache',
+            withCredentials: true
+          }
+        }
