@@ -12,10 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: [
-      'https://maven-edu.netlify.app/',
-      'https://mave-edu.herokuapp.com'
-    ],
+    origin: ['https://maven-edu.netlify.app/'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD']
   })
@@ -30,10 +27,6 @@ app.use((req, res, next) => {
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Origin',
-    'https://maven-edu.netlify.app/'
   );
   next();
 });
