@@ -14,7 +14,8 @@ app.use(
   cors({
     origin: ['https://maven-edu.netlify.app/'],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD']
+    // methods: 'GET, POST, PUT, DELETE, HEAD, OPTIONS',
+    optionsSuccessStatus: 200
   })
 );
 
