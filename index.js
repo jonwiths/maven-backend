@@ -22,7 +22,7 @@ app.use(
 
 app.use((req, res, next) => {
   res.header('Content-Type', 'application/json;charset=UTF-8');
-  // res.header('Access-Control-Allow-Origin', 'https://maven-edu.netlify.app');
+  res.header('Access-Control-Allow-Origin', 'https://maven-edu.netlify.app');
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header(
@@ -93,7 +93,9 @@ app.use('/api/student/get-student-history', getStudentHistory);
 app.use('/api/student/set-student-review', setReviews);
 app.use('/api/student/update', updateStudentAboutProfile);
 app.use('/api/student/profile', getStudentProfile);
+
 app.use('/api/student/get-recovery-code', getRecoveryCode);
+
 app.use('/api/student/get-specific-mentor', getSpecificMentor);
 
 //
