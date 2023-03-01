@@ -34,27 +34,11 @@ const deleteSchedTimings = (req, res) => {
 
             if (err) return res.status(500).err;
             else {
-              const q =
-                'SELECT meeting_available  FROM `heroku_064c14c6215e460`.mentor_summary WHERE `mentor_id` = ?;';
-
-              db.query(q, [userInfo.id], (err, data) => {
-                if (err) {
-                  return res.status(500).json(err);
-                } else {
-                  // console.log(data[0].total_mentors + 1);
-
-                  const q =
-                    'UPDATE `heroku_064c14c6215e460`.mentor_summary SET meeting_available = meeting_available-1 WHERE mentor_id = ?;';
-
-                  db.query(q, [userInfo.id], (err, data) => {
-                    if (err) {
-                      return res.status(500).json(err);
-                    } else {
-                      res.status(200).json('Schedule has been deleted.');
-                    }
-                  });
-                }
-              });
+              if (err) {
+                return res.status(500).json(err);
+              } else {
+                res.status(200).json('Schedule has been deleted.');
+              }
             } //
           } //
         ); //
