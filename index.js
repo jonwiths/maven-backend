@@ -14,9 +14,9 @@ const PORT = 8000;
 
 app.use(
   cors({
-    // origin: ['https://maven-edu.netlify.app'],
-    credentials: true
-    // optionsSuccessStatus: 200
+    origin: ['https://maven-edu.netlify.app'],
+    credentials: true,
+    optionsSuccessStatus: 200
   })
 );
 
