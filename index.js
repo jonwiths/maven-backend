@@ -14,7 +14,11 @@ const PORT = 8000;
 
 app.use(
   cors({
-    origin: ['http://localhost:3001', 'https://mave-edu.herokuapp.com'],
+    origin: [
+      'http://localhost:3001',
+      'https://mave-edu.herokuapp.com',
+      'https://maven-edu.netlify.app'
+    ],
     credentials: true,
     optionsSuccessStatus: 200
   })
