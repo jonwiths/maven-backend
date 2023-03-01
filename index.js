@@ -21,8 +21,17 @@ app.use(
 );
 
 app.use((req, res, next) => {
+  const allowedOrigins = [
+    'https://maven-edu.netlify.app',
+    'https://mave-edu.herokuapp.com'
+  ];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
   res.header('Content-Type', 'application/json;charset=UTF-8');
-  res.header('Access-Control-Allow-Origin', '*');
+  // res.setHeader('Access-Control-Allow-Origin', 'https://maven-edu.netlify.app');
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header(
