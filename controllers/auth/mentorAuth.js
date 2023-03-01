@@ -96,6 +96,7 @@ const login = (req, res) => {
       res.cookie('mentor', token, {
         httpOnly: true
       });
+
       // console.log(req.cookies.mentor);
       res.status(200).json({ auth: true, token: token, result: others });
     }
@@ -103,7 +104,7 @@ const login = (req, res) => {
 };
 
 const logout = (req, res) => {
-  res.clearCookie('mentor');
+  res.cookie('mentor', '');
   res.status(200).json('User has been logged out');
 };
 
