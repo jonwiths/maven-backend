@@ -10,15 +10,15 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const PORT = 8000;
+
 app.use(
   cors({
-    origin: ['https://maven-edu.netlify.app'],
-    credentials: true,
-    optionsSuccessStatus: 200
+    // origin: ['https://maven-edu.netlify.app'],
+    credentials: true
+    // optionsSuccessStatus: 200
   })
 );
-
-const PORT = 8000;
 
 app.use((req, res, next) => {
   res.header('Content-Type', 'application/json;charset=UTF-8');
