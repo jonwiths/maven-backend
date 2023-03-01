@@ -3,15 +3,15 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const register = (req, res) => {
-  // const chars =
-  //   '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  // const passwordLength = 6;
-  // let recoveryCode = '';
+  const chars =
+    '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const passwordLength = 6;
+  let recoveryCode = '';
 
-  // for (let i = 0; i <= passwordLength; i++) {
-  //   let randomNumber = Math.floor(Math.random() * chars.length);
-  //   recoveryCode += chars.substring(randomNumber, randomNumber + 1);
-  // }
+  for (let i = 0; i <= passwordLength; i++) {
+    let randomNumber = Math.floor(Math.random() * chars.length);
+    recoveryCode += chars.substring(randomNumber, randomNumber + 1);
+  }
 
   const f_name = req.body.s_fname;
   const l_name = req.body.s_lname;
