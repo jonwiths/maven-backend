@@ -30,7 +30,7 @@ const setBookMentor = (req, res) => {
           const total_booking = data[0].total_booking + 1;
 
           const q =
-            'SELECT *  FROM `heroku_064c14c6215e460`..`create_timings` WHERE mentor_id = ? AND id = ?;';
+            'SELECT *  FROM `heroku_064c14c6215e460`.`create_timings` WHERE mentor_id = ? AND id = ?;';
 
           db.query(q, [mentor_id, meeting_id], (err, data) => {
             if (err) {
