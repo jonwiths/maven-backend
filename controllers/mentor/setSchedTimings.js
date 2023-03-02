@@ -39,7 +39,7 @@ const setSchedTimings = (req, res) => {
             if (err) return res.status(403).json('Token is not valid');
             else {
               const q =
-                "SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE start = ? AND date = ? AND status = 'Posted' AND mentor_id = ?;";
+                "SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE start = ? AND date = ? AND (status = 'Posted' OR status = 'Booked') AND mentor_id = ?;";
               db.query(q, [start, date, userInfo.id], (err, data) => {
                 console.log(data);
                 if (data.length) {
