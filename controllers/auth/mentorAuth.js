@@ -108,4 +108,31 @@ const logout = (req, res) => {
   res.status(200).json('User has been logged out');
 };
 
-module.exports = { register, login, logout };
+const changePassword = (req, res) => {
+  const { email, newPassword } = req.body;
+  const q = 'SELECT * FROM `heroku_064c14c6215e460`.`mentors` WHERE email = ?';
+
+  // check if the user exists in the database
+  db.query(q, [email], (err, data) => {
+    if (err) throw err;
+    else if (data.length === 0) {
+      res.status(401).json(`User with email ${email} doesn't found.`);
+    } else {
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(newPassword, salt);
+
+      const q =
+        'UPDATE `heroku_064c14c6215e460`.`mentors` SET password = ? WHERE email = ?';
+
+      // update the password in the database
+      db.query(q, [hashedPassword, email], (err, data) => {
+        if (err) res.status(409).json(err);
+        else {
+          res.status(200).json('Password changed successfully');
+        }
+      });
+    }
+  });
+};
+
+module.exports = { register, login, logout, changePassword };
