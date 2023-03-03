@@ -163,8 +163,7 @@ const logout = (req, res) => {
 
 const changePassword = (req, res) => {
   const { email, newPassword } = req.body;
-  const q =
-    'SELECT * FROM `heroku_064c14c6215e460`.`students` WHERE email = ? AND id = ?';
+  const q = 'SELECT * FROM `heroku_064c14c6215e460`.`students` WHERE email = ?';
 
   // check if the user exists in the database
   db.query(q, [email], (err, data) => {
