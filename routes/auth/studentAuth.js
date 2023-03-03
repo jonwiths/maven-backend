@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   register,
   login,
+  logout,
   changePassword
 } = require('../../controllers/auth/studentAuth');
 
