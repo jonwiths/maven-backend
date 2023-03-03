@@ -3,15 +3,15 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const register = (req, res) => {
-  const chars =
-    '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const passwordLength = 6;
-  let recoveryCode = '';
+  // const chars =
+  //   '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  // const passwordLength = 6;
+  // let recoveryCode = '';
 
-  for (let i = 0; i <= passwordLength; i++) {
-    let randomNumber = Math.floor(Math.random() * chars.length);
-    recoveryCode += chars.substring(randomNumber, randomNumber + 1);
-  }
+  // for (let i = 0; i <= passwordLength; i++) {
+  //   let randomNumber = Math.floor(Math.random() * chars.length);
+  //   recoveryCode += chars.substring(randomNumber, randomNumber + 1);
+  // }
 
   const f_name = req.body.s_fname;
   const l_name = req.body.s_lname;
@@ -161,4 +161,34 @@ const logout = (req, res) => {
   // console.log(`Cookie after deleted:` + req.cookies.user);
 };
 
-module.exports = { register, login, logout };
+const changePassword = (req, res) => {
+  const { email, id, newPassword } = req.body;
+  const query =
+    'SELECT * FROM `heroku_064c14c6215e460`.`students` WHERE email = ? AND id = ?';
+
+  // check if the user exists in the database
+  db.query(query, [email, id], (err, data) => {
+    if (err) throw err;
+    else if (data.length === 0) {
+      res
+        .status(401)
+        .json(`User with email ${email} or id ${id} doesn't found.`);
+    } else {
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(newPassword, salt);
+
+      const q =
+        'UPDATE `heroku_064c14c6215e460`.`students` SET password = ? WHERE email = ? AND id = ?';
+
+      // update the password in the database
+      db.query(q, [hashedPassword, email, id], (err, data) => {
+        if (err) res.status(409).json(err);
+        else {
+          res.status(200).json('Password changed successfully');
+        }
+      });
+    }
+  });
+};
+
+module.exports = { register, login, logout, changePassword };
