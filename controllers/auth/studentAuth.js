@@ -132,7 +132,7 @@ const login = (req, res) => {
 
     const checkPassword = bcrypt.compareSync(
       req.body.s_password,
-      data[0].password
+      data.password
     );
 
     if (!checkPassword) {
