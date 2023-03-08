@@ -18,7 +18,9 @@ const register = (req, res) => {
   // const recovery_code = req.body.recovery_code;
   const status = 'Created';
 
-  const currentDate = new Date().toLocaleString();
+  const options = { timeZone: 'Asia/Manila' };
+  const currentDate = new Date().toLocaleString('en-US', options);
+  // console.log(currentDate);
 
   const q =
     'SELECT * FROM `heroku_064c14c6215e460`.`mentors` WHERE `email` = ? OR `phone_number` = ?;';
@@ -114,7 +116,7 @@ const changePassword = (req, res) => {
 
   // check if the user exists in the database
   db.query(q, [email], (err, data) => {
-    if (err) throw err;
+    if (err) res.status(409).json(err);
     else if (data.length === 0) {
       res.status(401).json(`User with email ${email} doesn't found.`);
     } else {

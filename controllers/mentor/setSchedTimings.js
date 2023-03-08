@@ -9,7 +9,6 @@ const setSchedTimings = (req, res) => {
   const date = req.body.date;
   const meeting_link = req.body.meeting_link;
   const status = 'Posted';
-  const day = req.body.day;
 
   if (duration === 'none') {
     res.json(`Please fill up duration`);
@@ -46,7 +45,7 @@ const setSchedTimings = (req, res) => {
                   res.status(403).send('Time AND date is already scheduled!');
                 } else {
                   const q =
-                    'INSERT INTO `heroku_064c14c6215e460`.`create_timings` (`id`, `duration`, `start`, `end`, `topic`, `date`, `meeting_link`, `day`, `status`, `mentor_id`) VALUES (?,?,?,?,?,?,?,?,?,?);';
+                    'INSERT INTO `heroku_064c14c6215e460`.`create_timings` (`id`, `duration`, `start`, `end`, `topic`, `date`, `meeting_link`, `status`, `mentor_id`) VALUES (?,?,?,?,?,?,?,?,?);';
                   db.query(
                     q,
                     [
@@ -57,7 +56,6 @@ const setSchedTimings = (req, res) => {
                       topic,
                       date,
                       meeting_link,
-                      day,
                       status,
                       userInfo.id
                     ],
