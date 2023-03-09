@@ -22,8 +22,8 @@ const setForgotPassword = (req, res) => {
           const transporter = nodemailer.createTransport({
             host: 'gmail.com',
             auth: {
-              user: process.env.EMAIL_USERNAME,
-              pass: process.env.EMAIL_PASSWORD
+              user: 'maven.edu05@gmail.com',
+              pass: 'riwcocxgozlgythh'
             }
           });
 
