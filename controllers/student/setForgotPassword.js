@@ -11,15 +11,15 @@ const setForgotPassword = (req, res) => {
     else if (data.length === 0) {
       return res.status(404).json({ error: 'User not found' });
     } else {
+      const token = bcrypt.hash(email, 10);
       const q =
         'UPDATE `heroku_064c14c6215e460`.students SET reset_password_token = ?, reset_password_expires = NOW() + INTERVAL 1day WHERE email = ?';
 
-      const token = bcrypt.hash(email, 10);
       db.query(q, [token, email], (err, data) => {
         if (err) return res.status(409).send(err);
         else {
           const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
+            host: 'gmail.com',
             auth: {
               user: process.env.EMAIL_USERNAME,
               pass: process.env.EMAIL_PASSWORD
