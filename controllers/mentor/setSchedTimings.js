@@ -57,7 +57,7 @@ const setSchedTimings = (req, res) => {
                   res.status(403).send('Time AND date is already scheduled!');
                 } else {
                   const q =
-                    'SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE  mentor_id = ?  date = ?';
+                    'SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE  mentor_id = ?  AND date = ?';
                   db.query(q, [userInfo.id, date], (err, data) => {
                     if (err) return res.status(409).send(err);
                     else if (data.length >= 2) {
