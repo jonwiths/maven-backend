@@ -12,7 +12,7 @@ const setForgotPassword = (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     } else {
       const q =
-        'UPDATE `heroku_064c14c6215e460`.students SET reset_password_token = ?, reset_password_expires = NOW() + INTERVAL "1day" WHERE email = ?';
+        'UPDATE `heroku_064c14c6215e460`.students SET reset_password_token = ?, reset_password_expires = NOW() + INTERVAL 1day WHERE email = ?';
 
       const token = bcrypt.hash(email, 10);
       db.query(q, [token, email], (err, data) => {
