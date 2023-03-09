@@ -31,7 +31,7 @@ const setForgotPassword = (req, res) => {
           const mailOptions = {
             from: process.env.EMAIL_USERNAME,
             to: email,
-            subject: '<h3> Password Reset Request </h3>',
+            subject: 'Password Reset Request',
             html: `<p>You have requested to reset your password. Please click the following link to reset your password:</p>
             <p><a href="http://localhost:3000/reset-password/${token}">Reset Password</a></p>`
           };
