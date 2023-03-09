@@ -24,7 +24,7 @@ const setForgotPassword = (req, res) => {
             service: 'gmail.com',
             auth: {
               user: 'maven.edu05@gmail.com',
-              pass: 'swcndlxqvxjegbdp1'
+              pass: 'swcndlxqvxjegbdp'
             }
           });
 
