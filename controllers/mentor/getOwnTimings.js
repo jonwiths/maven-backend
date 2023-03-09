@@ -17,7 +17,7 @@ const getOwnTimings = (req, res) => {
       console.log(userInfo);
     } else {
       const q =
-        'SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE mentor_id = ?;';
+        'SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE mentor_id = ? order BY  status desc, date ASC, STR_TO_DATE(start, "%H:%i") ASC, end;';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);
