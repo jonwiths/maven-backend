@@ -2,6 +2,10 @@ const { db } = require('../../connection/connect');
 const jwt = require('jsonwebtoken');
 
 const setFinishBooking = (req, res) => {
+  const date = new Date();
+  const options = { timeZone: 'Asia/Manila' };
+  const philippinesTime = date.toLocaleString('en-US', options);
+
   const student_id = req.body.student_id;
   const schedule_id = req.body.schedule_id;
   const status = 'Finished';
@@ -40,7 +44,7 @@ const setFinishBooking = (req, res) => {
                 student_id,
                 schedule_id,
                 status,
-                new Date().toLocaleString()
+                philippinesTime
               ],
               (err, data) => {
                 if (err) {
