@@ -66,11 +66,11 @@ const setSchedTimings = (req, res) => {
                         .send("You've reached 2 maximum schedule per day.");
                     } else {
                       const q =
-                        'SELECT COUNT(*) FROM `heroku_064c14c6215e460`.create_timings WHERE start < ? AND end > ? AND date = ?; ';
+                        'SELECT COUNT(*) AS count FROM `heroku_064c14c6215e460`.create_timings WHERE start < ? AND end > ? AND date = ?; ';
 
                       db.query(q, [end, start, date], (err, data) => {
                         if (err) return res.status(409).send(err);
-                        else if (data.length) {
+                        else if (data.count !== 0) {
                           res.status(403).send(`Invalid schudule overlapping.`);
                         } else {
                           const randomNum = generateVerificationCode();
