@@ -2,7 +2,7 @@ const { db } = require('../../connection/connect');
 const jwt = require('jsonwebtoken');
 
 const generateVerificationCode = () => {
-  const chars = '0123456789';
+  const chars = '0123456789MAVEN';
   const passwordLength = 4;
   let recoveryCode = '';
 
@@ -56,31 +56,42 @@ const setSchedTimings = (req, res) => {
                 if (data.length) {
                   res.status(403).send('Time AND date is already scheduled!');
                 } else {
-                  const randomNum = generateVerificationCode();
                   const q =
-                    'INSERT INTO `heroku_064c14c6215e460`.`create_timings` (`id`, `duration`, `start`, `end`, `topic`, `date`, `meeting_link`, `status`, `mentor_id`) VALUES (?,?,?,?,?,?,?,?,?);';
-                  db.query(
-                    q,
-                    [
-                      `MENT-SCHED-200${total_sched_timings}` + randomNum,
-                      duration,
-                      start,
-                      end,
-                      topic,
-                      date,
-                      meeting_link,
-                      status,
-                      userInfo.id
-                    ],
-                    (err, data) => {
-                      if (err) {
-                        console.log(err);
-                        return res.status(409).send(err);
-                      } else {
-                        res.status(200).json('Schedule has been added.');
-                      }
+                    'SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE mentor_id = ?';
+                  db.query(q, [userInfo.id], (err, data) => {
+                    if (err) return res.status(409).send(err);
+                    else if (data.length >= 2) {
+                      res
+                        .status(409)
+                        .send("You've reached 2 maximum schedule per day.");
+                    } else {
+                      const randomNum = generateVerificationCode();
+                      const q =
+                        'INSERT INTO `heroku_064c14c6215e460`.`create_timings` (`id`, `duration`, `start`, `end`, `topic`, `date`, `meeting_link`, `status`, `mentor_id`) VALUES (?,?,?,?,?,?,?,?,?);';
+                      db.query(
+                        q,
+                        [
+                          `MENT-SCHED-200${total_sched_timings}` + randomNum,
+                          duration,
+                          start,
+                          end,
+                          topic,
+                          date,
+                          meeting_link,
+                          status,
+                          userInfo.id
+                        ],
+                        (err, data) => {
+                          if (err) {
+                            console.log(err);
+                            return res.status(409).send(err);
+                          } else {
+                            res.status(200).json('Schedule has been added.');
+                          }
+                        }
+                      );
                     }
-                  );
+                  });
                 }
               });
             }
