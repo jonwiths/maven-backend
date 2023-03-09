@@ -1,6 +1,18 @@
 const { db } = require('../../connection/connect');
 const jwt = require('jsonwebtoken');
 
+const generateVerificationCode = () => {
+  const chars = '0123456789';
+  const passwordLength = 4;
+  let recoveryCode = '';
+
+  for (let i = 0; i < passwordLength; i++) {
+    let randomNumber = Math.floor(Math.random() * chars.length);
+    recoveryCode += chars.substring(randomNumber, randomNumber + 1);
+  }
+  return recoveryCode;
+};
+
 const setSchedTimings = (req, res) => {
   const duration = req.body.duration;
   const start = req.body.start;
@@ -44,12 +56,13 @@ const setSchedTimings = (req, res) => {
                 if (data.length) {
                   res.status(403).send('Time AND date is already scheduled!');
                 } else {
+                  const randomNum = generateVerificationCode();
                   const q =
                     'INSERT INTO `heroku_064c14c6215e460`.`create_timings` (`id`, `duration`, `start`, `end`, `topic`, `date`, `meeting_link`, `status`, `mentor_id`) VALUES (?,?,?,?,?,?,?,?,?);';
                   db.query(
                     q,
                     [
-                      `MENT-SCHED-200${total_sched_timings}`,
+                      `MENT-SCHED-200${total_sched_timings}` + randomNum,
                       duration,
                       start,
                       end,
