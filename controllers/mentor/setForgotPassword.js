@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 const setForgotPassword = (req, res) => {
   const { email } = req.body;
 
-  const q = 'SELECT * FROM `heroku_064c14c6215e460`.students WHERE email = ?';
+  const q = 'SELECT * FROM `heroku_064c14c6215e460`.mentors WHERE email = ?';
   db.query(q, [email], (err, data) => {
     if (err) return res.status(409).send(err);
     else if (data.length === 0) {
@@ -14,7 +14,7 @@ const setForgotPassword = (req, res) => {
     } else {
       const token = uuidv4();
       const q =
-        'UPDATE `heroku_064c14c6215e460`.students SET reset_password_token = ?, reset_password_expires = NOW() + INTERVAL 1 day WHERE email = ?';
+        'UPDATE `heroku_064c14c6215e460`.mentors SET reset_password_token = ?, reset_password_expires = NOW() + INTERVAL 1 day WHERE email = ?';
 
       db.query(q, [token, email], (err, data) => {
         if (err) return res.status(409).send(err);

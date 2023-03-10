@@ -80,6 +80,10 @@ const setFinishBooking = require('./routes/mentor/setFinishBooking');
 const getReviews = require('./routes/mentor/getReviews');
 const getMentorHistory = require('./routes/mentor/getMentorHistory');
 
+const setMentorForgotPassword = require('./routes/mentor/setForgotPassword');
+const updateMentorPassword = require('./routes/mentor/setResetPassword');
+const getMentorResetPassword = require('./routes/mentor/getResetPassword');
+
 //   const token = req.headers['x-access-token'];
 //   if (!token) {
 //     res.status(500).json('No token sent in headers');
@@ -116,7 +120,6 @@ app.use('/api/student/update-student-password', updateStudentPassword);
 app.use('/api/student/reset-password/:token', getResetPassword);
 
 app.use('/api/student/get-recovery-code', getRecoveryCode);
-
 app.use('/api/student/get-specific-mentor', getSpecificMentor);
 
 //
@@ -135,6 +138,10 @@ app.use('/api/mentor/update', updateProfileMentor);
 app.use('/api/mentor/set-finish-booking', setFinishBooking);
 app.use('/api/mentor/get-reviews', getReviews);
 app.use('/api/mentor/get-mentor-history', getMentorHistory);
+
+app.use('/api/mentor/set-mentor-forgot-password', setMentorForgotPassword);
+app.use('/api/mentor/update-mentor-password', updateMentorPassword);
+app.use('/api/mentor/reset-password/:token', getMentorResetPassword);
 
 console.log('Start');
 
