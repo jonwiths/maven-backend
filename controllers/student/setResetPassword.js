@@ -17,7 +17,7 @@ const setResetPassword = (req, res) => {
       const hashedPassword = bcrypt.hashSync(password, salt);
 
       const q =
-        'UPDATE `heroku_064c14c6215e460`.students SET password = ?, reset_token = NULL, reset_token_expires = NULL WHERE reset_token = ?';
+        'UPDATE `heroku_064c14c6215e460`.students SET password = ?, reset_password_token = NULL, reset_token_expires = NULL WHERE reset_password_token = ?';
 
       db.query(q, [hashedPassword, token], (err, data) => {
         if (err) return res.status(409).send(err);
