@@ -19,23 +19,23 @@ const setForgotPassword = (req, res) => {
       db.query(q, [token, email], (err, data) => {
         if (err) return res.status(409).send(err);
         else {
-          const transporter = nodemailer.createTransport({
-            service: 'gmail.com',
+          const mailTransporter = nodemailer.createTransport({
+            service: 'gmail',
             auth: {
               user: 'maven.edu05@gmail.com',
-              pass: 'swcndlxqvxjegbdp1'
+              pass: 'swcndlxqvxjegbdp'
             }
           });
 
           const mailOptions = {
-            from: process.env.EMAIL_USERNAME,
+            from: 'maven.edu05@gmail.com',
             to: email,
             subject: 'Password Reset Request',
             html: `<p>You have requested to reset your password. Please click the following link to reset your password:</p>
             <p><a href="http://localhost:3000/reset-password/${token}">Reset Password</a></p>`
           };
 
-          transporter.sendMail(mailOptions, (error, info) => {
+          mailTransporter.sendMail(mailOptions, (error, info) => {
             if (error) {
               console.error(error);
               return res.status(500).json({ error: 'Internal Server Error' });
