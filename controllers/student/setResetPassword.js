@@ -13,8 +13,8 @@ const setResetPassword = (req, res) => {
     else if (!data.length) {
       return res.status(404).json({ message: 'Invalid token' });
     } else {
-      const salt = bcrypt.genSalt(10);
-      const hashedPassword = bcrypt.hash(password, salt);
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(password, salt);
 
       const q =
         'UPDATE `heroku_064c14c6215e460`.students SET password = ?, reset_token = NULL, reset_token_expires = NULL WHERE reset_token = ?';
