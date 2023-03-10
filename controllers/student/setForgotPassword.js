@@ -32,7 +32,7 @@ const setForgotPassword = (req, res) => {
             to: email,
             subject: 'Password Reset Request',
             html: `<p>You have requested to reset your password. Please click the following link to reset your password:</p>
-            <p><a href="https://maven-edu.netlify.app/reset-password/${token}">Reset Password</a></p>`
+            <p><a href="http://localhost:3000/reset-password/${token}">Reset Password</a></p>`
           };
 
           mailTransporter.sendMail(mailOptions, (error, info) => {
