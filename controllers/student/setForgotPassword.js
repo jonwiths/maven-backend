@@ -4,7 +4,6 @@ const { db } = require('../../connection/connect');
 const { v4: uuidv4 } = require('uuid');
 
 const setForgotPassword = (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
   const { email } = req.body;
 
   const q = 'SELECT * FROM `heroku_064c14c6215e460`.students WHERE email = ?';
@@ -24,7 +23,7 @@ const setForgotPassword = (req, res) => {
             service: 'gmail.com',
             auth: {
               user: 'maven.edu05@gmail.com',
-              pass: 'swcndlxqvxjegbdp'
+              pass: 'swcndlxqvxjegbdp1'
             }
           });
 
