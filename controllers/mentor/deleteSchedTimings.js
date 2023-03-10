@@ -19,8 +19,8 @@ const deleteSchedTimings = (req, res) => {
       if (err) {
         console.log(err);
         return res.status(403).json('Token is not valid');
-      } else if (data.length === 0) {
-        return res.status(500).json('Invalid SCHEDULE ID');
+      } else if (!data.length) {
+        return res.status(500).json("Mentor ID or Meeting ID doesn't found!");
       } else {
         console.log(token);
         const q =
