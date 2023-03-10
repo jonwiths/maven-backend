@@ -63,6 +63,7 @@ const getSpecificMentor = require('./routes/students/getSpecificMentor');
 const getStudentReviews = require('./routes/students/getStudentReviews');
 const setStudentForgotPassword = require('./routes/students/setForgotPassword');
 const updateStudentPassword = require('./routes/students/setResetPassword');
+const getResetPassword = require('./routes/students/getResetPassword');
 
 const mentorAuthRoute = require('./routes/auth/mentorAuth');
 const getCurrentMentor = require('./routes/mentor/getCurrentMentor');
@@ -112,6 +113,7 @@ app.use('/api/student/profile', getStudentProfile);
 app.use('/api/student/get-student-reviews', getStudentReviews);
 app.use('/api/student/set-student-forgot-password', setStudentForgotPassword);
 app.use('/api/student/update-student-password', updateStudentPassword);
+app.use('/api/student/reset-password/:token', getResetPassword);
 
 app.use('/api/student/get-recovery-code', getRecoveryCode);
 
