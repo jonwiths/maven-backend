@@ -70,7 +70,7 @@ const setSchedTimings = (req, res) => {
 
                       db.query(q, [date, start, userInfo.id], (err, data) => {
                         if (err) return res.status(409).send(err);
-                        else if (data.length >= 2) {
+                        else if (data.length > 0) {
                           res
                             .status(409)
                             .send(
