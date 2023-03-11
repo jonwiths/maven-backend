@@ -61,7 +61,7 @@ const setSchedTimings = (req, res) => {
                   db.query(q, [date, start, userInfo.id], (err, data) => {
                     if (err)
                       if (err) return res.status(409).json(err);
-                      else if (data.length) {
+                      else if (data.length > 0) {
                         res
                           .status(403)
                           .send('Invalid schedule time overlapping.');
