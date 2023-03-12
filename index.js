@@ -61,6 +61,7 @@ const getStudentProfile = require('./routes/students/getStudentProfile');
 const getRecoveryCode = require('./routes/students/getRecoveryCode');
 const getSpecificMentor = require('./routes/students/getSpecificMentor');
 const getStudentReviews = require('./routes/students/getStudentReviews');
+const setFinishBooking = require('./routes/students/setFinishBooking');
 const setStudentForgotPassword = require('./routes/students/setForgotPassword');
 const updateStudentPassword = require('./routes/students/setResetPassword');
 const getResetPassword = require('./routes/students/getResetPassword');
