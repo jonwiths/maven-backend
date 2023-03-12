@@ -65,9 +65,9 @@ const setFinishBooking = (req, res) => {
                   return res.status(409).send(err);
                 } else {
                   const q =
-                    "UPDATE `heroku_064c14c6215e460`.create_timings SET status ='Finished' WHERE student_id = ? AND id = ?";
+                    "UPDATE `heroku_064c14c6215e460`.create_timings SET status ='Finished' WHERE mentor_id = ? AND id = ?";
 
-                  db.query(q, [userInfo.id, schedule_id], (err, data) => {
+                  db.query(q, [mentor_id, schedule_id], (err, data) => {
                     if (err) {
                       console.log(err);
                       return res.status(500).json(err);
