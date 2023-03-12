@@ -12,6 +12,9 @@ const setBookMentor = (req, res) => {
 
   const mentor_id = req.body.mentor_id;
   const meeting_id = req.body.meeting_id;
+  const date = req.body.date;
+  const start = req.body.start;
+  const end = req.body.end;
   const status = 'Booked';
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
