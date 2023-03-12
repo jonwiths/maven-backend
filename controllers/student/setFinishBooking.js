@@ -1,6 +1,18 @@
 const { db } = require('../../connection/connect');
 const jwt = require('jsonwebtoken');
 
+const generateVerificationCode = () => {
+  const chars = '0123456789MAVEN';
+  const passwordLength = 4;
+  let recoveryCode = '';
+
+  for (let i = 0; i < passwordLength; i++) {
+    let randomNumber = Math.floor(Math.random() * chars.length);
+    recoveryCode += chars.substring(randomNumber, randomNumber + 1);
+  }
+  return recoveryCode;
+};
+
 const setFinishBooking = (req, res) => {
   const date = new Date();
   const options = { timeZone: 'Asia/Manila' };
@@ -34,12 +46,13 @@ const setFinishBooking = (req, res) => {
         jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
           if (err) return res.status(403).json('Token is not valid');
           else {
+            const randomNum = generateVerificationCode();
             const q =
               'INSERT INTO `heroku_064c14c6215e460`.`history` (`id`, `mentor_id`, `student_id`, `create_timing_id`, `status`, `date_ended`) VALUES (?,?,?,?,?,?);';
             db.query(
               q,
               [
-                `MAVEN-HIST-900${total_history}`,
+                `MAVEN-HIST-900${total_history}` + randomNum,
                 mentor_id,
                 userInfo.id,
                 schedule_id,
