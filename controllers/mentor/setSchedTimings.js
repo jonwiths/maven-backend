@@ -63,7 +63,7 @@ const setSchedTimings = (req, res) => {
                     else if (data.length >= 2) {
                       res
                         .status(409)
-                        .send("You've reached 2 maximum schedule per day.");
+                        .send("You've reached 2 maximum schedule on that day.");
                     } else {
                       const q =
                         'SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE date = ? AND start <= ? AND end >= ? AND mentor_id = ?;';
