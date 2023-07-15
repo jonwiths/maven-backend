@@ -15,7 +15,7 @@ const getProfileMentorProfile = (req, res) => {
     else {
       // console.log(userInfo.id);
       const q =
-        'SELECT id, profile, f_name, l_name, access, fb_link, linked_in_link, price FROM `heroku_064c14c6215e460`.mentors WHERE id = ?';
+        'SELECT id, profile, f_name, l_name, access, fb_link, linked_in_link, price FROM `ementor_db_1`.mentors WHERE id = ?';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);
@@ -42,7 +42,7 @@ const getProfileMentorAbout = (req, res) => {
     else {
       // console.log(userInfo.id);
       const q =
-        'SELECT A.*, M.fb_link AS fb_link, M.linked_in_link AS linked_in_link FROM `heroku_064c14c6215e460`.mentor_about AS A JOIN `heroku_064c14c6215e460`.mentors AS M ON A.mentor_id = M.id WHERE mentor_id = ?;';
+        'SELECT A.*, M.fb_link AS fb_link, M.linked_in_link AS linked_in_link FROM `ementor_db_1`.mentor_about AS A JOIN `ementor_db_1`.mentors AS M ON A.mentor_id = M.id WHERE mentor_id = ?;';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);
@@ -69,7 +69,7 @@ const getProfileMentorEducation = (req, res) => {
     else {
       // console.log(userInfo.id);
       const q =
-        'SELECT * FROM  `heroku_064c14c6215e460`.mentor_education WHERE mentor_id = ?;';
+        'SELECT * FROM  `ementor_db_1`.mentor_education WHERE mentor_id = ?;';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);

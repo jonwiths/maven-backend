@@ -15,19 +15,22 @@ const PORT = 8000;
 app.use(
   cors({
     origin: [
-      'http://localhost:3000',
-      'https://mave-edu.herokuapp.com',
-      'https://maven-edu.netlify.app'
+      'http://localhost:8000'
+      // 'http://localhost:8000',
+      // 'https://maven-edu.netlify.app'
     ],
     credentials: true,
     optionsSuccessStatus: 200
   })
 );
 
+// app.use(cors());
+
 app.use((req, res, next) => {
   const allowedOrigins = [
-    'https://maven-edu.netlify.app',
-    'https://mave-edu.herokuapp.com'
+    'http://localhost:8000'
+    // 'https://maven-edu.netlify.app',
+    // 'http://localhost:8000'
   ];
   const origin = req.headers.origin;
   // if (allowedOrigins.includes(origin)) {

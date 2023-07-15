@@ -24,7 +24,7 @@ const setStudentAboutProfile = (req, res) => {
     } else {
       // console.log(data.length);
       const q =
-        'INSERT INTO `heroku_064c14c6215e460`.student_about(bio, sex, phone_number, age, address) VALUES (?,?,?,?,?);';
+        'INSERT INTO `ementor_db_1`.student_about(bio, sex, phone_number, age, address) VALUES (?,?,?,?,?);';
 
       db.query(
         q,

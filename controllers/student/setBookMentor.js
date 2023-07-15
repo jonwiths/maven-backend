@@ -22,7 +22,7 @@ const setBookMentor = (req, res) => {
     if (err) return res.status(500).json(err);
     else {
       const q =
-        'SELECT COUNT(*) AS total_booking FROM  `heroku_064c14c6215e460`.`booking_status`;';
+        'SELECT COUNT(*) AS total_booking FROM  `ementor_db_1`.`booking_status`;';
 
       db.query(q, (err, data) => {
         if (err) {
@@ -33,7 +33,7 @@ const setBookMentor = (req, res) => {
           const total_booking = data[0].total_booking + 1;
 
           const q =
-            'SELECT *  FROM `heroku_064c14c6215e460`.`create_timings` WHERE mentor_id = ? AND id = ?;';
+            'SELECT *  FROM `ementor_db_1`.`create_timings` WHERE mentor_id = ? AND id = ?;';
 
           db.query(q, [mentor_id, meeting_id], (err, data) => {
             if (err) {
@@ -45,7 +45,7 @@ const setBookMentor = (req, res) => {
             } else {
               // console.log(data.length);
               const q =
-                'INSERT INTO `heroku_064c14c6215e460`.booking_status(id, status, student_id, mentor_id, create_timing_id, date_booked) VALUES (?,?,?,?,?,?);';
+                'INSERT INTO `ementor_db_1`.booking_status(id, status, student_id, mentor_id, create_timing_id, date_booked) VALUES (?,?,?,?,?,?);';
 
               db.query(
                 q,
@@ -63,7 +63,7 @@ const setBookMentor = (req, res) => {
                     return res.status(500).json(err);
                   } else {
                     const q =
-                      "UPDATE `heroku_064c14c6215e460`.create_timings SET status = 'Booked' WHERE id = ? AND mentor_id = ?;";
+                      "UPDATE `ementor_db_1`.create_timings SET status = 'Booked' WHERE id = ? AND mentor_id = ?;";
 
                     db.query(q, [meeting_id, mentor_id], (err, data) => {
                       if (err) {

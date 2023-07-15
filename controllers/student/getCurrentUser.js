@@ -18,7 +18,7 @@ const getCurrentStudent = (req, res) => {
       res.status(500).json(err);
       console.log(userInfo);
     } else {
-      const q = 'SELECT * FROM `heroku_064c14c6215e460`.students WHERE id = ?;';
+      const q = 'SELECT * FROM `ementor_db_1`.students WHERE id = ?;';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);

@@ -17,7 +17,7 @@ const getOwnTimings = (req, res) => {
       console.log(userInfo);
     } else {
       const q =
-        "SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE mentor_id = ? ORDER BY CASE WHEN status = 'Posted' THEN 1 WHEN status = 'Booked' THEN 2 WHEN status = 'Finished' THEN 3 ELSE 4 END, date ASC, STR_TO_DATE(start, '%H:%i') ASC, end, status DESC;";
+        "SELECT * FROM `ementor_db_1`.create_timings WHERE mentor_id = ? ORDER BY CASE WHEN status = 'Posted' THEN 1 WHEN status = 'Booked' THEN 2 WHEN status = 'Finished' THEN 3 ELSE 4 END, date ASC, STR_TO_DATE(start, '%H:%i') ASC, end, status DESC;";
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);

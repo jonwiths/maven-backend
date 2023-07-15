@@ -7,7 +7,7 @@ const getResetPassword = (req, res) => {
   const { token } = req.params;
 
   const q =
-    'SELECT * FROM `heroku_064c14c6215e460`.mentors WHERE reset_password_token = ? AND reset_password_expires > NOW()';
+    'SELECT * FROM `ementor_db_1`.mentors WHERE reset_password_token = ? AND reset_password_expires > NOW()';
 
   db.query(q, [token], (err, data) => {
     if (err) return res.status(409).json(err);

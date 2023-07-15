@@ -24,7 +24,7 @@ const updateProfileMentorAbout = (req, res) => {
     else {
       // console.log(userInfo.id);
       const q =
-        'UPDATE `heroku_064c14c6215e460`.mentor_about SET `bio` = ?, `sex` = ?, `age` = ?, `phone_number` = ?, `email` = ?, address = ?,`yrs_exp` = ?,`current_job` = ? WHERE `mentor_id` = ?;';
+        'UPDATE `ementor_db_1`.mentor_about SET `bio` = ?, `sex` = ?, `age` = ?, `phone_number` = ?, `email` = ?, address = ?,`yrs_exp` = ?,`current_job` = ? WHERE `mentor_id` = ?;';
 
       db.query(
         q,
@@ -69,7 +69,7 @@ const updateProfileMentorExperience = (req, res) => {
     else {
       // console.log(userInfo.id);
       const q =
-        'UPDATE  `heroku_064c14c6215e460`.mentor_education SET current_job = ? , current_job_started = ?, company = ? WHERE mentor_id = ?';
+        'UPDATE  `ementor_db_1`.mentor_education SET current_job = ? , current_job_started = ?, company = ? WHERE mentor_id = ?';
 
       db.query(
         q,
@@ -105,7 +105,7 @@ const updateProfileMentorEducation = (req, res) => {
     else {
       console.log(userInfo.id);
       const q =
-        'UPDATE `heroku_064c14c6215e460`.mentor_education SET `college` = ?, `college_yr_graduate` = ?, `high_school` = ?, `hs_yr_graduated` = ?  WHERE `mentor_id` = ?;';
+        'UPDATE `ementor_db_1`.mentor_education SET `college` = ?, `college_yr_graduate` = ?, `high_school` = ?, `hs_yr_graduated` = ?  WHERE `mentor_id` = ?;';
 
       db.query(
         q,
@@ -145,7 +145,7 @@ const updateProfileMentorSocial = (req, res) => {
     else {
       console.log(userInfo.id);
       const q =
-        'UPDATE `heroku_064c14c6215e460`.mentors SET fb_link = ?, linked_in_link = ? WHERE id = ?;';
+        'UPDATE `ementor_db_1`.mentors SET fb_link = ?, linked_in_link = ? WHERE id = ?;';
 
       db.query(q, [fb_link, linked_in_link, userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);

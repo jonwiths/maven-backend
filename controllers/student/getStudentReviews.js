@@ -17,7 +17,7 @@ const getStudentReviews = (req, res) => {
       return res.status(500).json(err);
     } else {
       const q =
-        'SELECT R.* FROM heroku_064c14c6215e460.reviews AS R JOIN heroku_064c14c6215e460.history AS H ON R.history_id = H.id WHERE R.student_id = ? ; ';
+        'SELECT R.* FROM ementor_db_1.reviews AS R JOIN ementor_db_1.history AS H ON R.history_id = H.id WHERE R.student_id = ? ; ';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);

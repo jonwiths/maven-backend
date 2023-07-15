@@ -6,7 +6,7 @@ const setResetPassword = (req, res) => {
   const { token, password } = req.body;
 
   const q =
-    'SELECT * FROM `heroku_064c14c6215e460`.students WHERE reset_password_token = ? AND reset_password_expires > NOW()';
+    'SELECT * FROM `ementor_db_1`.students WHERE reset_password_token = ? AND reset_password_expires > NOW()';
 
   db.query(q, [token], (err, data) => {
     if (err) return res.status(409).send(err);
@@ -17,7 +17,7 @@ const setResetPassword = (req, res) => {
       const hashedPassword = bcrypt.hashSync(password, salt);
 
       const q =
-        'UPDATE `heroku_064c14c6215e460`.students SET password = ?, reset_password_token = NULL, reset_password_expires = NULL WHERE reset_password_token = ?';
+        'UPDATE `ementor_db_1`.students SET password = ?, reset_password_token = NULL, reset_password_expires = NULL WHERE reset_password_token = ?';
 
       db.query(q, [hashedPassword, token], (err, data) => {
         if (err) return res.status(409).send(err);

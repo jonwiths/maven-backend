@@ -26,7 +26,7 @@ const setSchedTimings = (req, res) => {
     res.json(`Please fill up duration`);
   } else {
     const q =
-      'SELECT COUNT(*) AS total_sched_timings FROM `heroku_064c14c6215e460`.create_timings;';
+      'SELECT COUNT(*) AS total_sched_timings FROM `ementor_db_1`.create_timings;';
 
     const token =
       req.body.mentor ||
@@ -50,14 +50,14 @@ const setSchedTimings = (req, res) => {
             if (err) return res.status(403).json('Token is not valid');
             else {
               const q =
-                "SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE start = ? AND date = ? AND (status = 'Posted' OR status = 'Booked') AND mentor_id = ?;";
+                "SELECT * FROM `ementor_db_1`.create_timings WHERE start = ? AND date = ? AND (status = 'Posted' OR status = 'Booked') AND mentor_id = ?;";
               db.query(q, [start, date, userInfo.id], (err, data) => {
                 console.log(data);
                 if (data.length) {
                   res.status(403).send('Time AND date is already scheduled!');
                 } else {
                   const q =
-                    'SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE  mentor_id = ?  AND date = ?';
+                    'SELECT * FROM `ementor_db_1`.create_timings WHERE  mentor_id = ?  AND date = ?';
                   db.query(q, [userInfo.id, date], (err, data) => {
                     if (err) return res.status(409).send(err);
                     else if (data.length >= 2) {
@@ -66,7 +66,7 @@ const setSchedTimings = (req, res) => {
                         .send("You've reached 2 maximum schedule on that day.");
                     } else {
                       const q =
-                        'SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE date = ? AND start <= ? AND end >= ? AND mentor_id = ?;';
+                        'SELECT * FROM `ementor_db_1`.create_timings WHERE date = ? AND start <= ? AND end >= ? AND mentor_id = ?;';
 
                       db.query(
                         q,
@@ -82,7 +82,7 @@ const setSchedTimings = (req, res) => {
                           } else {
                             const randomNum = generateVerificationCode();
                             const q =
-                              'INSERT INTO `heroku_064c14c6215e460`.`create_timings` (`id`, `duration`, `start`, `end`, `topic`, `date`, `meeting_link`, `status`, `mentor_id`) VALUES (?,?,?,?,?,?,?,?,?);';
+                              'INSERT INTO `ementor_db_1`.`create_timings` (`id`, `duration`, `start`, `end`, `topic`, `date`, `meeting_link`, `status`, `mentor_id`) VALUES (?,?,?,?,?,?,?,?,?);';
                             db.query(
                               q,
                               [

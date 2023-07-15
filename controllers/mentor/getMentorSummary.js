@@ -16,7 +16,7 @@ const getMentorSummary = (req, res) => {
     else {
       // console.log(userInfo.id);
       const q =
-        'SELECT * FROM `heroku_064c14c6215e460`.mentor_summary WHERE mentor_id = ?; ';
+        'SELECT * FROM `ementor_db_1`.mentor_summary WHERE mentor_id = ?; ';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);

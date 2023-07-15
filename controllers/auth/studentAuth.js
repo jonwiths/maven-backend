@@ -14,7 +14,7 @@ const register = (req, res) => {
   const currentDate = new Date().toLocaleString();
 
   const q =
-    'SELECT * FROM `heroku_064c14c6215e460`.`students` WHERE `email` = ? OR `phone_number` = ?;';
+    'SELECT * FROM `ementor_db_1`.`students` WHERE `email` = ? OR `phone_number` = ?;';
 
   db.query(q, [email, phone], (err, data) => {
     if (err) return res.status(500).json(err);
@@ -22,7 +22,7 @@ const register = (req, res) => {
       return res.status(409).json('Email or Phone number already exists!');
 
     const q =
-      'SELECT COUNT(*) AS total_student FROM `heroku_064c14c6215e460`.`students`;';
+      'SELECT COUNT(*) AS total_student FROM `ementor_db_1`.`students`;';
 
     db.query(q, (err, data) => {
       if (err) console.log(err);
@@ -33,7 +33,7 @@ const register = (req, res) => {
       const hashedPassword = bcrypt.hashSync(password, salt);
 
       const insertQ =
-        'INSERT INTO `heroku_064c14c6215e460`.`students`(`id`,`f_name`,`l_name`,`email`,`password`,`phone_number`,`date_created`,  `status`) VALUES(?,?,?,?,?,?,?,?)';
+        'INSERT INTO `ementor_db_1`.`students`(`id`,`f_name`,`l_name`,`email`,`password`,`phone_number`,`date_created`,  `status`) VALUES(?,?,?,?,?,?,?,?)';
 
       db.query(
         insertQ,
@@ -56,7 +56,7 @@ const register = (req, res) => {
 
           if (err) return res.status(500).json(err);
           const q =
-            'INSERT INTO `heroku_064c14c6215e460`.student_about(bio, sex, phone_number, age, address, student_id) VALUES (?,?,?,?,?,?);';
+            'INSERT INTO `ementor_db_1`.student_about(bio, sex, phone_number, age, address, student_id) VALUES (?,?,?,?,?,?);';
 
           db.query(
             q,
@@ -81,7 +81,7 @@ const register = (req, res) => {
                 const hs_yr = 'Not Set';
 
                 const q =
-                  'INSERT INTO `heroku_064c14c6215e460`.student_education(college, college_yr, high_school, hs_yr, student_id) VALUES (?,?,?,?,?);';
+                  'INSERT INTO `ementor_db_1`.student_education(college, college_yr, high_school, hs_yr, student_id) VALUES (?,?,?,?,?);';
 
                 db.query(
                   q,
@@ -114,7 +114,7 @@ const register = (req, res) => {
 };
 
 const login = (req, res) => {
-  q = 'SELECT * FROM `heroku_064c14c6215e460`.`students` WHERE `email` = ?';
+  q = 'SELECT * FROM `ementor_db_1`.`students` WHERE `email` = ?';
 
   db.query(q, [req.body.s_email], (err, data) => {
     if (err) return res.status(500).json(err);
@@ -153,7 +153,7 @@ const logout = (req, res) => {
 
 // const changePassword = (req, res) => {
 //   const { email, newPassword } = req.body;
-//   const q = 'SELECT * FROM `heroku_064c14c6215e460`.`students` WHERE email = ?';
+//   const q = 'SELECT * FROM `ementor_db_1`.`students` WHERE email = ?';
 
 //   // check if the user exists in the database
 //   db.query(q, [email], (err, data) => {
@@ -165,7 +165,7 @@ const logout = (req, res) => {
 //       const hashedPassword = bcrypt.hashSync(newPassword, salt);
 
 //       const q =
-//         'UPDATE `heroku_064c14c6215e460`.`students` SET password = ? WHERE email = ?';
+//         'UPDATE `ementor_db_1`.`students` SET password = ? WHERE email = ?';
 
 //       // update the password in the database
 //       db.query(q, [hashedPassword, email], (err, data) => {

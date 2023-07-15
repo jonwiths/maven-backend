@@ -24,7 +24,7 @@ const updateStudentAboutProfile = (req, res) => {
     } else {
       // console.log(data.length);
       const q =
-        'UPDATE `heroku_064c14c6215e460`.student_about SET bio = ?, sex = ?, phone_number = ?, age =?, address = ? WHERE student_id = ?;';
+        'UPDATE `ementor_db_1`.student_about SET bio = ?, sex = ?, phone_number = ?, age =?, address = ? WHERE student_id = ?;';
 
       db.query(
         q,
@@ -65,7 +65,7 @@ const updateStudentEducationProfile = (req, res) => {
     } else {
       // console.log(data.length);
       const q =
-        'UPDATE `heroku_064c14c6215e460`.student_education SET college = ?, college_yr = ?, high_school = ?, hs_yr =?  WHERE student_id = ?;';
+        'UPDATE `ementor_db_1`.student_education SET college = ?, college_yr = ?, high_school = ?, hs_yr =?  WHERE student_id = ?;';
 
       db.query(
         q,

@@ -14,7 +14,7 @@ const deleteSchedTimings = (req, res) => {
 
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, userInfo) => {
     const q =
-      'SELECT * FROM `heroku_064c14c6215e460`.create_timings WHERE `id` = ? AND mentor_id = ?;';
+      'SELECT * FROM `ementor_db_1`.create_timings WHERE `id` = ? AND mentor_id = ?;';
     db.query(q, [sched_id, userInfo.id], (err, data) => {
       if (err) {
         console.log(err);
@@ -24,7 +24,7 @@ const deleteSchedTimings = (req, res) => {
       } else {
         console.log(token);
         const q =
-          'DELETE FROM `heroku_064c14c6215e460`.create_timings WHERE id = ? AND mentor_id = ?; ';
+          'DELETE FROM `ementor_db_1`.create_timings WHERE id = ? AND mentor_id = ?; ';
 
         db.query(
           q,

@@ -20,8 +20,7 @@ const setReviews = (req, res) => {
       console.log(err);
       return res.status(500).json(err);
     } else {
-      const q =
-        'SELECT COUNT(*) AS total_reviews FROM `heroku_064c14c6215e460`.reviews;';
+      const q = 'SELECT COUNT(*) AS total_reviews FROM `ementor_db_1`.reviews;';
 
       db.query(q, (err, data) => {
         if (err) {
@@ -32,7 +31,7 @@ const setReviews = (req, res) => {
           const total_reviews = data[0].total_reviews + 1;
 
           const q =
-            'SELECT * FROM `heroku_064c14c6215e460`.reviews WHERE mentor_id = ? AND student_id = ? AND history_id = ?;';
+            'SELECT * FROM `ementor_db_1`.reviews WHERE mentor_id = ? AND student_id = ? AND history_id = ?;';
 
           db.query(q, [mentor_id, userInfo.id, history_id], (err, data) => {
             if (err) {
@@ -48,7 +47,7 @@ const setReviews = (req, res) => {
             } else {
               // console.log(data.length);
               const q =
-                'INSERT INTO `heroku_064c14c6215e460`.reviews(id, student_id, mentor_id, history_id, comment) VALUES (?,?,?,?,?);';
+                'INSERT INTO `ementor_db_1`.reviews(id, student_id, mentor_id, history_id, comment) VALUES (?,?,?,?,?);';
 
               db.query(
                 q,

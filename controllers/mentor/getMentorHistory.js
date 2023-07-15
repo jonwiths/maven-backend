@@ -16,7 +16,7 @@ const getMentorHistory = (req, res) => {
       return res.status(500).json(err);
     } else {
       const q =
-        'SELECT H.*, CT.duration AS duration, CT.topic AS topic, CT.start AS start, CT.end AS end, CT.date AS date, S.id AS s_id,  S.f_name AS s_fname, M.subject AS subject, S.l_name AS s_lname FROM `heroku_064c14c6215e460`.history AS H JOIN `heroku_064c14c6215e460`.students AS S ON H.student_id = S.id JOIN `heroku_064c14c6215e460`.create_timings AS CT ON H.create_timing_id = CT.id JOIN `heroku_064c14c6215e460`.mentors AS M ON H.mentor_id = M.id WHERE H.mentor_id = ?;';
+        'SELECT H.*, CT.duration AS duration, CT.topic AS topic, CT.start AS start, CT.end AS end, CT.date AS date, S.id AS s_id,  S.f_name AS s_fname, M.subject AS subject, S.l_name AS s_lname FROM `ementor_db_1`.history AS H JOIN `ementor_db_1`.students AS S ON H.student_id = S.id JOIN `ementor_db_1`.create_timings AS CT ON H.create_timing_id = CT.id JOIN `ementor_db_1`.mentors AS M ON H.mentor_id = M.id WHERE H.mentor_id = ?;';
 
       db.query(q, [userInfo.id], (err, data) => {
         if (err) return res.status(500).json(err);
